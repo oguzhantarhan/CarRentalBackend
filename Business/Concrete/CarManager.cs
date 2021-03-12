@@ -27,7 +27,7 @@ namespace Business.Concrete
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            return new SuccessResult(Messages.CarUpdated);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
         public IDataResult<List<Car>> GetAll()
@@ -37,15 +37,15 @@ namespace Business.Concrete
 
         public IDataResult<Car> GetById(int ID)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == ID));
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == ID),Messages.CarListed);
         }
 
-        public IDataResult<List<Car>> GetCarByBrandID(int ID)
+        public IDataResult<List<Car>> GetCarByBrandId(int ID)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == ID),Messages.CarListed);
         }
 
-        public IDataResult<List<Car>> GetCarByColorID(int ID)
+        public IDataResult<List<Car>> GetCarByColorId(int ID)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=>c.ColorId==ID),Messages.CarListed);
         }
