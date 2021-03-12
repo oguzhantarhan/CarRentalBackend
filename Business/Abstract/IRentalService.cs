@@ -6,9 +6,9 @@ namespace Business.Abstract
 {
     public interface IRentalService
     {
-        IResult Add(Rental brand);
-        IResult Update(Rental brand);
-        IResult Delete(Rental brand);
+        IResult Add(Rental rental);
+        IResult Update(Rental rental);
+        IResult Delete(Rental rental);
         IDataResult<List<Rental>> GetAll();
         IDataResult<Rental> GetById(int Id);
     }
