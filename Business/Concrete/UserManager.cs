@@ -1,10 +1,13 @@
-﻿using Business.Abstract;
-using Business.Constants;
-using Core.Utilities.Results;
-using DataAccess.Abstract;
-using Entities.Concrete;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using Business.Abstract;
+using Entities.Concrete;
+using DataAccess.Abstract;
+using Core.Utilities.Results;
+using Core.Aspects.Autofac.Validation;
+using Business.ValidationRules.FluentValidation;
+using Core.Entities.Concrete;
 
 namespace Business.Concrete
 {
@@ -20,29 +23,40 @@ namespace Business.Concrete
         public IResult Add(User user)
         {
             _userDal.Add(user);
-            return new SuccessResult(Messages.UserAdded);
+            return new SuccessResult();
         }
 
         public IResult Delete(User user)
         {
             _userDal.Delete(user);
-            return new SuccessResult(Messages.UserDeleted);
+            return new SuccessResult();
+        }
+
+        
+        public IResult Update(User user)
+        {
+            _userDal.Update(user);
+            return new SuccessResult();
         }
 
         public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UserListed);
+            return new SuccessDataResult<List<User>>(_userDal.GetAll());
         }
 
-        public IDataResult<User> GetById(int Id)
+        public IDataResult<User> GetByUserId(int id)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u=>u.Id==Id),Messages.UserListed);
+            return new SuccessDataResult<User>(_userDal.Get(b => b.Id == id));
         }
 
-        public IResult Update(User user)
+        public List<OperationClaim> GetClaims(User user)
         {
-            _userDal.Update(user);
-            return new SuccessResult(Messages.UserUpdated);
+            return _userDal.GetClaims(user);
+        }
+
+        public User GetByMail(string email)
+        {
+            return _userDal.Get(u => u.Email == email);
         }
     }
 }

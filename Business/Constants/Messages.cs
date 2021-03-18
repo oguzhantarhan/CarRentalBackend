@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace Business.Constants
@@ -30,5 +31,8 @@ namespace Business.Constants
         public static string UserDeleted = "User deleted";
         public static string UserListed = "Users listed";
         public static string UserUpdated = "User updated";
+        public static string CarUnreturned="Car unreturned";
+        public static string CarImageLimitExceeded="Car image limit exceeded";
+        public static string AuthorizationDenied= "Authorization Denied";
     }
 }
