@@ -8,11 +8,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Core.DependenceResolvers
+namespace Core.DependencyResolvers
 {
     public class CoreModule : ICoreModule
     {
-        public void load(IServiceCollection serviceCollection)
+        public void Load(IServiceCollection serviceCollection)
         {
             serviceCollection.AddMemoryCache();
             serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

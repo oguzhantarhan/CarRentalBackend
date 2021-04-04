@@ -5,9 +5,8 @@ using System.Text;
 
 namespace Core.Utilities.IoC
 {
-   public interface ICoreModule
+    public interface ICoreModule
     {
-        void load(IServiceCollection serviceCollection);
-
+        void Load(IServiceCollection serviceCollection);
     }
 }

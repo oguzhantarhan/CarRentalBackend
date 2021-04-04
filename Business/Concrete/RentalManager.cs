@@ -5,6 +5,7 @@ using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System.Collections.Generic;
 
 namespace Business.Concrete
@@ -51,7 +52,11 @@ namespace Business.Concrete
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
         }
-         IResult IsCarReturned(Rental rental)
+        public IDataResult<List<RentalDetailDto>> GetRentalDetails()
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(), Messages.CarListed);
+        }
+        IResult IsCarReturned(Rental rental)
         {
             var result = _rentalDal.GetAll(r => r.CarId == rental.CarId && r.ReturnDate == null);
             if (result!=null)

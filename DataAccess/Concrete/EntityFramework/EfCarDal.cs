@@ -1,4 +1,4 @@
-﻿using Core.DateAccess.EntityFramework;
+﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -21,6 +21,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  on car.ColorId equals c.Id
                                  select new CarDetailDto
                                   {
+                                      Id=c.Id,
                                       CarName = car.Name,
                                       BrandName = b.Name,
                                       DailyPrice = car.DailyPrice,
